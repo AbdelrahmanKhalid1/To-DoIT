@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6F51FF</color>
+    <color name="colorPrimaryDark">#6F51FF</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryLight">#C6C4FA</color>
+
+    <color name="categoryWork">#6F51FF</color>
+    <color name="categoryMail">#0884FA</color>
+    <color name="categoryGame">#FFEB3B</color>
+    <color name="categoryLife">#22B573</color>
+    <color name="categoryHealth">#ED1E79</color>
+    <color name="categoryTravel">#F7931E</color>
+</resources>
