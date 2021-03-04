@@ -53,6 +53,7 @@ public class TaskPresenter {
         }
         taskDao.deleteList(deleteTasks)
                 .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {

@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements EnterNameDialog.E
     private ActionMode mActionMode;
     private List<Task> tasks;
     private Set<Integer> selectedTasks;
+    private AlarmManager alarmManager;
     public static final int REQUEST_CODE_ADD_TASK = 2;
     public static final int REQUEST_CODE_UPDATE_TASK = 3;
 
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements EnterNameDialog.E
         mPresenter = new TaskPresenter(this, db.taskDao());
         setTextUsername();
         buildRecycler();
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
     }
 
     private void setTextUsername(){
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements EnterNameDialog.E
     public void successfullDeleted(List<Task> tasks) {
         this.tasks = tasks;
         mAdapter.setTasks(tasks);
-        selectedTasks.clear();
+        markAllDone();
     }
     //endregion
 
@@ -231,7 +233,6 @@ public class MainActivity extends AppCompatActivity implements EnterNameDialog.E
             Task task = tasks.get(x);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, task.getId(),
                     new Intent(this, AlarmReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.cancel(pendingIntent);
         }
         selectedTasks.clear();
